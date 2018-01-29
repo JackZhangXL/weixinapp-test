@@ -10,7 +10,7 @@
 	"compileType": "miniprogram",
 	"libVersion": "1.9.1",
 	"appid": "wx0e6313aba6906c49",
-	"projectname": "QuickStart",
+	"projectname": "weixinapp-test",
 	"isGameTourist": false,
 	"condition": {
 		"search": {
