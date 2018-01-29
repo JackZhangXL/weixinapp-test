@@ -5,7 +5,7 @@
   ],
   "window":{
     "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#1984d1",
+    "navigationBarBackgroundColor": "#0fa5d9",
     "navigationBarTitleText": "张歆琳的小程序",
     "navigationBarTextStyle":"white"
   },
@@ -17,8 +17,8 @@
       {
         "text": "首页",
         "pagePath": "pages/index/index",
-        "iconPath": "./images/waimai.png",
-        "selectedIconPath": "./images/waimai_select.png"
+        "iconPath": "./images/home.png",
+        "selectedIconPath": "./images/home_select.png"
       },
       {
         "text": "我的",
