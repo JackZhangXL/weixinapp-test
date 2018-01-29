@@ -1,21 +1,19 @@
-/**index.wxss**/
-.userinfo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+@import "../../component/category/category.wxss";
+
+/* 首页轮播区 */
+.banner {
+    width: 100%;
+    height: 300rpx;
 }
 
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
+.slide-image {
+    width: 100%;
+    height: 100%;
 }
 
-.userinfo-nickname {
-  color: #aaa;
-}
-
-.usermotto {
-  margin-top: 200px;
+/* 类目区域 */
+.category {
+    width: 100%;
+    padding-bottom: 20rpx;
+    background-color: #fff;
 }

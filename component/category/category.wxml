@@ -1,0 +1,10 @@
+<template name="template-category">
+    <view class="category-item">
+        <view>
+            <image src="{{icon}}" class="category-icon"></image>
+        </view>
+        <view>
+            <text class="category-text">{{text}}</text>
+        </view>
+    </view>
+</template>
