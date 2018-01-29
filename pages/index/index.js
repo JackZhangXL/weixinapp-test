@@ -1,5 +1,3 @@
-// import Shop from '../../component/shop/shop.js';
-
 const app = getApp();     //获取应用实例
 
 Page({

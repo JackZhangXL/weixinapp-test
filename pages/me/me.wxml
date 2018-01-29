@@ -1,0 +1,12 @@
+<view class="container">
+    <view class="userinfo">
+        <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="bingGetuserinfo"> 获取头像昵称 </button>
+        <block wx:else>
+            <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+            <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+        </block>
+    </view>
+    <view class="view-test">
+        <text class="user-motto" bindtap="bindTestTap">测试用页面</text>
+    </view>
+</view>
