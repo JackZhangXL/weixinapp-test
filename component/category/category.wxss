@@ -10,6 +10,6 @@
     height: 96rpx;
 }
 
-.category-text{
+.category-text {
     font-size: 26rpx;
 }

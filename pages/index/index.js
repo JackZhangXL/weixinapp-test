@@ -17,12 +17,16 @@ Page({
                 text: "程序"
             },
             {
+                icon: "../../images/paint.png",
+                text: "绘画"
+            },
+            {
                 icon: "../../images/music.png",
                 text: "音乐"
             },
             {
-                icon: "../../images/paint.png",
-                text: "绘画"
+                icon: "../../images/opera.png",
+                text: "歌剧"
             }
         ],
     },
