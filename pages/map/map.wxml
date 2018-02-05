@@ -1,5 +1,7 @@
-<map class="map" longitude="{{longitude}}" latitude="{{latitude}}" bindregionchange="regionChange"
+<map id="myMap" class="map"
+    longitude="{{longitude}}" latitude="{{latitude}}" bindregionchange="regionChange"
     markers="{{markers}}" bindmarkertap="markerTap"
     circles="{{circles}}"
     polyline="{{polyline}}"
-    controls="{{controls}}" bindcontroltap="controlTap" scale="{{scale}}"></map>
+    controls="{{controls}}" bindcontroltap="controlTap" scale="{{scale}}"
+    show-location="{{true}}"></map>

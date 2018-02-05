@@ -5,8 +5,7 @@
 
 App({
     onLaunch: function () {
-        console.log('jack onLaunch');
-        // TBD 当小程序初始化完成时，会触发 onLaunch（全局只触发一次）
+        this.globalData.systemInfo = wx.getSystemInfoSync();
     },
     getUserInfo: function(cb) {
         const that = this;
@@ -32,5 +31,6 @@ App({
     },
     globalData: {
         userInfo: null,
+        systemInfo: null,
     },
 });
