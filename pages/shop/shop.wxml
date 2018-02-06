@@ -1,0 +1,21 @@
+<view class="page">
+    <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_access" bindtap="bindSelectShop">
+            <view class="weui-cell__bd">门店</view>
+            <view class="weui-cell__ft weui-cell__ft_in-access">{{shopName}}</view>
+        </view>
+        <view class="weui-cell">
+            <view class="weui-cell__bd">地址</view>
+            <view class="weui-cell__ft">{{shopAddress}}</view>
+        </view>
+        <view class="weui-cell">
+            <view class="weui-cell__bd">评论</view>
+            <view class="weui-cell__ft">
+                <input placeholder="请输入文本" />
+            </view>
+        </view>
+    </view>
+    <view class="weui-btn-area">
+        <button class="weui-btn" type="primary" bindtap="bindOkBtn">确定</button>
+    </view>
+</view>

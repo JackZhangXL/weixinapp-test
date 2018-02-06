@@ -1,39 +1,15 @@
 const app = getApp();
 
 Page({
-    data: {
-        // id: 0 留给 marker
-        scale: 16,
-        controls: [{
-            id: 1,
-            iconPath: "../../images/map_zoom_plus.png",
-            position: {
-                left: 60,
-                top: 20,
-                width: 40,
-                height: 40,
-            },
-            clickable: true,
-        }, {
-            id: 2,
-            iconPath: "../../images/map_zoom_minus.png",
-            position: {
-                left: 20,
-                top: 20,
-                width: 40,
-                height: 40,
-            },
-            clickable: true,
-        }],
-    },
+    data: {},
     onLoad: function() {
         const that = this;
         const systemInfo = app.globalData.systemInfo;
+        const markers = app.globalData.mapMarkers;
         this.mapCtx = wx.createMapContext('myMap');
 
-        let controls = [...this.data.controls];
-        controls.push({
-            id: 3,
+        const controls = [{
+            id: 1,
             iconPath: "../../images/map_return.png",
             position: {
                 left: 20,
@@ -42,10 +18,9 @@ Page({
                 height: 40,
             },
             clickable: true,
-        });
-        controls.push({
-            id: 4,
-                iconPath: "../../images/map_search.png",
+        }, {
+            id: 2,
+                iconPath: "../../images/map_zoom_plus.png",
                 position: {
                 left: systemInfo.windowWidth - 50,
                 top: systemInfo.windowHeight - 50,
@@ -53,26 +28,14 @@ Page({
                 height: 40,
             },
             clickable: true,
-        });
+        }];
 
         wx.getLocation({
             success: (res) => {
                 that.setData({
                     latitude: res.latitude,
                     longitude: res.longitude,
-                    controls,
-                    polyline: [{
-                        points: [{
-                            longitude: res.latitude,
-                            latitude: res.longitude,
-                        }, {
-                            longitude: res.latitude + 50,
-                            latitude: res.longitude + 50,
-                        }],
-                        color:"#FF0000",
-                        width: 2,
-                        dottedLine: true
-                    }],
+                    markers,
                     circles: [{
                         latitude: res.latitude,
                         longitude: res.longitude,
@@ -81,68 +44,33 @@ Page({
                         radius: 1000,
                         strokeWidth: 1,
                     }],
+                    controls,
                 });
             },
         });
     },
 
-    // 点击左上角缩放按钮
-    controlTap: function(e) {
-        const controlId = e.controlId;
-
-        if (controlId === 1) {  // 增加 zoom
+    onShow: function() {
+        if (app.globalData.resetMarkers) {
+            app.globalData.resetMarkers = false;
             this.setData({
-                scale: this.data.scale + 1,
+                markers: app.globalData.mapMarkers,
             });
-        } else if (controlId === 2) {   // 缩小 zoom
-            this.setData({
-                scale: this.data.scale - 1,
-            });
-        } else if (controlId === 3) {   // 回到我的位置
-            this.mapCtx.moveToLocation();
-        } else if (controlId === 4) {   // 查找 poi
-            this.chooseLocation();
         }
     },
 
-    // 查找 poi
-    chooseLocation: function(e) {
-        const that = this;
+    controlTap: function(e) {
+        const controlId = e.controlId;
 
-        wx.chooseLocation({
-            success: function(res) {
-                let markers = [];
-                if (that.data.hasOwnProperty("markers")) {
-                    markers = [...that.data.markers];
-                }
-                const id = markers.length ? markers[markers.length - 1].id + 1 : 0;
-
-                markers.push({
-                    id,
-                    latitude: res.latitude,
-                    longitude: res.longitude,
-                    iconPath: "../../images/map_marker.png",
-                    width: 40,
-                    height: 40,
-                    label: {
-                        content: res.name,
-                        color: "#FF0000",
-                    },
-                });
-
-                that.setData({
-                    markers,
-                });
-            },
-        });
+        if (controlId === 1) {  // 回到我的位置
+            this.mapCtx.moveToLocation();
+        } else if (controlId === 2) {   // 增加【我的门店】
+            wx.navigateTo({
+                url: '../shop/shop',
+            });
+        }
     },
 
-    // 视野发生变化
-    regionChange: function(e) {
-        console.log(e.type);
-    },
-
-    // 点击大头钉
     markerTap: function(e) {
         console.log(e.markerId);
 
@@ -157,6 +85,11 @@ Page({
         // });
     },
 
+    // // 视野发生变化
+    // regionChange: function(e) {
+    //     console.log(e.type);
+    // },
+    //
     // // 获取位置
     // getCenterLocation: function() {
     //     this.mapCtx.getCenterLocation({

@@ -1,8 +1,3 @@
-//app.js
-// require('./utils/polyfill');
-// const ajax = require('./utils/ajax');
-// const host = require('./config/request-host');
-
 App({
     onLaunch: function () {
         this.globalData.systemInfo = wx.getSystemInfoSync();
@@ -32,5 +27,7 @@ App({
     globalData: {
         userInfo: null,
         systemInfo: null,
+        mapMarkers: [],
+        resetMarkers: false,
     },
 });
