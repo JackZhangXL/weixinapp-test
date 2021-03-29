@@ -1,0 +1,86 @@
+<view class="navigator-item">		
+	<navigator url="./refresh/index">下拉刷新页面</navigator>
+</view>
+<view class="navigator-item">		
+	<navigator url="./vtabs/index">vtabs页面</navigator>
+</view>
+<view class="navigator-item">		
+	<navigator url="./custom-navigation-bar/index">自定义导航条</navigator>
+</view>
+<view class="navigator-item">		
+	<navigator url="./region-picker/index">自定义级联picker</navigator>
+</view>
+<view class="navigator-item">		
+	<navigator url="./slider/index">slider</navigator>
+</view>
+<view class="navigator-item">		
+	<navigator url="./webview/index">Webview</navigator>
+</view>
+<view class="navigator-item">		
+	<navigator url="./webgl/index">WebGL</navigator>
+</view>
+<view class="section-title">Icon</view>
+<icon class="iconfont icon-zujian" />
+<view class="section-title">Progress</view>
+<progress percent="{{percentValue}}" show-info stroke-width="5"/>
+<circle-progress id="progress1" percent="{{percentValue}}" />
+<button bindtap="drawProgress">redraw</button>
+<view class="section-title">Rich-text</view>
+<rich-text space="emsp" nodes="{{nodes}}" bindtap="tap"></rich-text>
+<view class="section-title">View</view>
+<view hover-class="bc-red">
+	parent节点，点击出现点击态
+  <view hover-stop-propagation hover-class="bc-green">child节点，hover-stop-propagation禁止了点击后父节点出现点击态</view>
+</view>
+<view class="section-title">事件</view>
+<view id="parentView" bindtap="onTap" hover-class="bc-red">
+  parent，点击触发一次
+  <view id="childView" bindtap="onTap" hover-stop-propagation hover-class="bc-green">
+    child，点击触发两次，捕获和冒泡阶段分别触发
+  </view>
+</view>
+<view id="parentView" bindtap="onTap" hover-class="bc-red">
+  parent，点击触发一次
+  <view id="childView" catchtap="onTap" hover-stop-propagation hover-class="bc-green">
+    child，点击触发一次，只捕获阶段触发一次，冒泡阶段不触发
+  </view>
+</view>
+<view class="section-title">左滑删除</view>
+<view class="list_item">
+	<movable-area style="width:750rpx;height:100rpx;">
+		<movable-view style="width:1050rpx;height:100rpx;" direction="horizontal">
+			<view class="left">movable-area，movable-view实现，无回弹效果</view>
+			<view class="right">
+				<view class="read">已读</view>
+				<view class="delete">删除</view>
+			</view>
+		</movable-view>
+	</movable-area>
+</view>
+<view class="list_item">
+	<slide-view width="750" height="100" slideWidth="300">
+		<view class="left" slot="left">miniprogram-slide-view组件，有回弹效果</view>
+		<view class="right" slot="right">
+			<view class="read">已读</view>
+			<view class="delete">删除</view>
+		</view>
+	</slide-view>
+</view>
+<mp-slideview ext-class="slideViewClass" buttons="{{slideButtons}}">
+	<mp-cell value="wui-slideview，按钮有逐渐变大效果"></mp-cell>
+</mp-slideview>
+<view class="section-title">scroll-view</view>
+<scroll-view upper-threshold="50" bindscrolltoupper="viewScrollToUpperEvent" scroll-y style="height: 300rpx">
+	<view id="demo1" class="scroll-view-item demo-text-1">达到upper-threshold阈值时，触发bindscrolltoupper事件</view>
+	<view id="demo2" class="scroll-view-item demo-text-2"></view>
+	<view id="demo3" class="scroll-view-item demo-text-3"></view>
+</scroll-view>
+<view class="section-title">recycle-view</view>
+<recycle-view height="200" batch="{{batchSetRecycleData}}" id="recycleId" batch-key="batchSetRecycleData" style="background:white;">
+	<recycle-item wx:for="{{recycleList}}" wx:key="index" class='item'>
+		<view>
+			{{item.id}}: {{item.name}}
+		</view>
+	</recycle-item>
+</recycle-view>
+<view class="section-title">picker</view>

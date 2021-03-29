@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "circle-progress": "../../component/circle-progress/index",
+    "slide-view": "miniprogram-slide-view",
+    "mp-slideview": "weui-miniprogram/slideview/slideview",
+    "mp-cell": "weui-miniprogram/cell/cell",
+    "recycle-view": "miniprogram-recycle-view/recycle-view",
+    "recycle-item": "miniprogram-recycle-view/recycle-item"
+  }
+}
