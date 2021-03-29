@@ -1,0 +1,4 @@
+<view class="section-title">picker-view 配合 js 实现</view>
+<region-picker-view bindchange="onRegionChange"></region-picker-view>
+<view class="section-title">picker-view 配合 wxs 实现</view>
+<region-picker-view-wxs bindchange="onRegionChange"></region-picker-view-wxs>

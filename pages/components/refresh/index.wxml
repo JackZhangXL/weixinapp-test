@@ -1,0 +1,53 @@
+<wxs module="refresh">
+	var pullingMessage = "下拉刷新"
+
+	// 一些业务处理完全在WXS中实现有点困难，也可以借助JS，在WXS中用callMethod调用JS方法
+	module.exports = {
+		onRefresh: function(e, instance) {
+			pullingMessage = "更新中"
+			instance.callMethod("setData", {
+				pullingMessage: pullingMessage,
+				refresherTriggered: true
+			})
+			instance.callMethod("willCompleteRefresh", {})
+		},
+		onAbort: function(e, instance) {	// 异常状态，例如被事件突然打断，事件包括电话等，被迫松手了
+			pullingMessage = "下拉刷新"
+		},
+		onRestore: function(e, instance) { // 松手恢复原位了，不刷了
+			pullingMessage = "下拉刷新"
+		},
+		onPulling: function(e, instance) {	// refresher-threshold设置的是80，手指按住往下拉的状态
+			var p = Math.min(e.detail.dy / 80, 1)
+			// 这里在视图层，不怕频繁操作DOM
+			var icon = instance.selectComponent('#refresherIcon')
+			icon.setStyle({
+				opacity: p,
+				transform: "rotate(" + (90 + p * 180) + "deg)"
+			})
+			var view = instance.selectComponent('.refresh-container')
+			view.setStyle({
+				opacity: p,
+				transform: "scale(" + p + ")"
+			})
+			if (e.detail.dy >= 80) {
+				if (pullingMessage == "下拉刷新") {
+					pullingMessage = "释放更新"
+					instance.callMethod("setData", {
+						pullingMessage
+					})
+				}
+			}
+		}
+	}
+</wxs>
+
+<scroll-view scroll-y style="width: 100%; height: 400px;overflow-anchor:auto;" bindscroll="onScroll" scroll-with-animation enable-back-to-top enable-flex scroll-anchoring refresher-enabled refresher-threshold="{{80}}" refresher-default-style="none" refresher-background="#FFF" bindrefresherpulling="{{refresh.onPulling}}" bindrefresherrefresh="{{refresh.onRefresh}}" bindrefresherrestore="{{refresh.onRestore}}" bindrefresherabort="{{refresh.onAbort}}" refresher-triggered="{{refresherTriggered}}">
+	<view slot="refresher" class="refresh-container" style="display: block; width: 100%; height: 80px; background: #F8f8f8; display: flex; align-items: center;">
+		<view class="view1" style="position: absolute; text-align: center; width: 100%;display:flex;align-items:center;justify-content:center;color:#888;">
+			<mp-icon id="refresherIcon" icon="arrow" color="#888" size="{{20}}" style="margin-right:5px;transform:rotate(90deg)"></mp-icon>
+			<text style="min-width:80px;text-align:left;">{{pullingMessage}}</text>
+		</view>
+	</view>
+	<view>下拉刷新</view>
+</scroll-view>
