@@ -1,0 +1,6 @@
+微信登录只能拿到基本信息，无法拿到openid，unionid等机密信息
+<button style="margin-top:20rpx;" bindgetuserinfo="login_old" open-type="getUserInfo" type="primary">微信登陆</button>
+	
+<navigator style="padding-top:20rpx;" url="./web-view/index" open-type="navigate">web view</navigator>
+
+<button open-type="share" type="primary">分享</button>

@@ -1,0 +1,1 @@
+<web-view bindmessage="onReceivedMessage" src="{{url}}" style="z-index:-1"></web-view>
